@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply font-bold py-2 px-4 m-1 rounded text-white bg-orange-500 w-44 text-center hover:bg-orange-800 cursor-pointer;
+}
+
+.btn-edit {
+    @apply font-bold py-2 px-4 m-1 rounded text-white bg-blue-600 hover:bg-blue-800;
+}
+
+.btn-show {
+    @apply font-bold py-2 px-4 m-1 rounded text-black bg-gray-200 hover:bg-gray-400;
+}
+
+.btn-delete {
+    @apply font-bold py-2 px-4 m-1 rounded text-white bg-red-600 hover:bg-red-800;
+}
+
+.btn-create {
+    @apply font-bold py-2 px-4 m-1 rounded text-white bg-green-500 hover:bg-green-700;
+}

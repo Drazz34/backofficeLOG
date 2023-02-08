@@ -18,8 +18,8 @@
                             <tr class="border">
                                 <th class="p-5">ID</th>
                                 <th class="p-5">NOM</th>
-                                <th class="p-5 mx-3 flex justify-between items-center">ACTIONS<a href="{{route('tags.create')}}" class="btn-create">CREER</a></th>
-                                
+                                <th class="p-5 mx-3 flex justify-between items-center">ACTIONS<x-btn-creer><a href="{{route('tags.create')}}">CREER</a></x-btn-creer></th>
+
                             </tr>
                         </thead>
 
@@ -32,14 +32,49 @@
                                 <td class="p-5">{{$tag->nom}}</td>
                                 <td class="p-5">
 
-                                    <a href="{{route('tags.edit', $tag->id)}}" class="btn-edit">Modifier</a>
+                                    <!-- lien Modifier -->
+                                    @component('components.btn-modele')
+                                    @slot('route')
+                                    {{route('tags.edit', $tag->id)}}
+                                    @endslot
+                                    @slot('class')
+                                    text-white bg-blue-600 hover:bg-blue-800 focus:bg-blue-800;
+                                    @endslot
+                                    @slot('title')
+                                    Modifier
+                                    @endslot
+                                    @endcomponent
 
-                                    <a href="{{route('tags.show', $tag->id)}}" class="btn-show">Voir</a>
 
-                                    <a href="#" class="btn-delete">Supprimer</a>
-            
+                                    <!-- lien Voir -->
+                                    @component('components.btn-modele')
+                                    @slot('route')
+                                    {{route('tags.show', $tag->id)}}
+                                    @endslot
+                                    @slot('class')
+                                    text-black bg-gray-200 hover:bg-gray-400 focus:bg-gray-400;
+                                    @endslot
+                                    @slot('title')
+                                    Voir
+                                    @endslot
+                                    @endcomponent
+
+
+                                    <!-- lien Supprimer -->
+                                    @component('components.btn-modele')
+                                    @slot('route')
+                                    #
+                                    @endslot
+                                    @slot('class')
+                                    text-white bg-red-600 hover:bg-red-800 focus:bg-red-800;
+                                    @endslot
+                                    @slot('title')
+                                    Supprimer
+                                    @endslot
+                                    @endcomponent
+
                                 </td>
-                                
+
                             </tr>
 
                             @endforeach

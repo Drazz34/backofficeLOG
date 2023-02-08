@@ -17,7 +17,7 @@ class JeuFactory extends Factory
     public function definition()
     {
         return [
-            'titre' => ucwords($this->faker->words(2, true))
+            'titre' => ucwords($this->faker->unique()->words(2, true))
         ];
     }
 }

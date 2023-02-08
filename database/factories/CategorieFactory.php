@@ -17,7 +17,7 @@ class CategorieFactory extends Factory
     public function definition()
     {
         return [
-            'libelle' => ucwords($this->faker->words(1, true))
+            'libelle' => ucwords($this->faker->unique()->words(1, true))
         ];
     }
 }

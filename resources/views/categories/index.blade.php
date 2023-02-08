@@ -18,8 +18,8 @@
                             <tr class="border">
                                 <th class="p-5">ID</th>
                                 <th class="p-5">LIBELLE</th>
-                                <th class="p-5 mx-3 flex justify-between items-center">ACTIONS<a href="{{route('categories.create')}}" class="btn-create">CREER</a></th>
-                                
+                                <th class="p-5 mx-3 flex justify-between items-center">ACTIONS<x-btn-creer><a href="{{route('categories.create')}}">CREER</a></x-btn-creer></th>
+
                             </tr>
                         </thead>
 
@@ -31,15 +31,49 @@
                                 <td class="p-5">{{$categorie->id}}</td>
                                 <td class="p-5">{{$categorie->libelle}}</td>
                                 <td class="p-5">
+                                        
+                                    @component('components.btn-modele')
+                                        @slot('route')
+                                        {{route('categories.edit', $categorie->id)}}
+                                        @endslot
+                                        @slot('class')
+                                            text-white bg-blue-600 hover:bg-blue-800 focus:bg-blue-800;
+                                        @endslot
+                                        @slot('title')
+                                            Modifier
+                                        @endslot
+                                    @endcomponent
 
-                                    <a href="{{route('categories.edit', $categorie->id)}}" class="btn-edit">Modifier</a>
+                                    
+                                    <!-- lien Voir -->
+                                    @component('components.btn-modele')
+                                    @slot('route')
+                                    {{route('categories.show', $categorie->id)}}
+                                    @endslot
+                                    @slot('class')
+                                    text-black bg-gray-200 hover:bg-gray-400 focus:bg-gray-400;
+                                    @endslot
+                                    @slot('title')
+                                    Voir
+                                    @endslot
+                                    @endcomponent
 
-                                    <a href="{{route('categories.show', $categorie->id)}}" class="btn-show">Voir</a>
 
-                                    <a href="#" class="btn-delete">Supprimer</a>
-            
+                                    <!-- lien Supprimer -->
+                                    @component('components.btn-modele')
+                                    @slot('route')
+                                    #
+                                    @endslot
+                                    @slot('class')
+                                    text-white bg-red-600 hover:bg-red-800 focus:bg-red-800;
+                                    @endslot
+                                    @slot('title')
+                                    Supprimer
+                                    @endslot
+                                    @endcomponent
+
                                 </td>
-                                
+
                             </tr>
 
                             @endforeach

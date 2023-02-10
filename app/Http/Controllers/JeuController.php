@@ -63,11 +63,14 @@ class JeuController extends Controller
     {
         $jeu = Jeu::find($id);
         $categorie = $jeu->categorie;
-        return view('jeux.show', compact('jeu', 'categorie'));
-        // [
-        //     'jeu' => $jeu,
-        //     'categorie' => $categorie
-        // ]
+        // $tag = $jeu->tags;
+        // dd($tag);
+        return view('jeux.show', [
+            'jeu' => $jeu,
+            'categorie' => $categorie
+            // 'tag' => $tag
+        ]);
+        
     }
 
     /**

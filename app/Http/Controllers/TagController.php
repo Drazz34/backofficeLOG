@@ -49,9 +49,8 @@ class TagController extends Controller
     public function show($id)
     {
         $tag = Tag::find($id);
-        return view('tags.show', [
-            'id' => $id,
-            'tag' => $tag]);
+        $jeux = $tag->jeux;
+        return view('tags.show', compact('tag', 'jeux'));
     }
 
     /**

@@ -13,7 +13,17 @@
                     
                     <p class="p-5">Liste de tous les jeux de cette catégorie</p>
 
-                    <p class="p-5">{{$jeux}}</p>
+                    <p>
+
+                        <ul>
+                        @foreach ($jeux as $jeu)
+
+                        <li class="p-1">- <a href="{{route('jeux.show', $jeu->id)}}">{{$jeu->titre}}</a></li>
+
+                        @endforeach
+                        </ul>
+
+                    </p>
 
                     <div class="flex justify-end">
                         <a href="{{route('categories.edit', $categorie->id)}}" class="btn-edit">Modifier</a>

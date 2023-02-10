@@ -11,8 +11,7 @@ class Jeu extends Model
 
     protected $table = "jeux";
     protected $primaryKey = "id";
-    protected $fillable = array('titre');
-    protected $fillableDesc = array('description');
+    protected $fillable = array('titre', 'description');
     public $timestamps = false;
 
     public function categorie()
@@ -20,7 +19,8 @@ class Jeu extends Model
         return $this->belongsTo(Categorie::class);
     }
 
-    public function tags() {
-        return $this->belongsToMany(Tag::class);
+    public function tags() 
+    {
+        return $this->belongsToMany(Tag::class, 'pivot_tags');
     }
 }

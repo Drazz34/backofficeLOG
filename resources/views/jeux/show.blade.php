@@ -9,9 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h1 class="font-bold text-2xl">{{$jeu->titre}}</h1>
+                    <h1 class="font-bold text-2xl mb-5">{{$jeu->titre}}</h1>
 
-                    <h3 class="text-xl">{{$categorie->libelle}}</h3>
+                    <h3 class="text-xl bg-green-300 max-w-min p-2 rounded-lg">{{$categorie->libelle}}</h3>
+
+                    <h3 class="text-xl bg-orange-300 max-w-min p-2 rounded-lg"></h3>
                     
                     <p class="p-5">{{$jeu->description}}</p>
 

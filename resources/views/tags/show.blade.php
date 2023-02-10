@@ -13,6 +13,18 @@
                     
                     <p class="p-5">Liste des jeux avec ce tag</p>
 
+                    <p>
+
+                        <ul>
+                        @foreach ($jeux as $jeu)
+
+                        <li class="p-1">- <a href="{{route('jeux.show', $jeu->id)}}">{{$jeu->titre}}</a></li>
+
+                        @endforeach
+                        </ul>
+
+                    </p>
+
                     <div class="flex justify-end">
                         <a href="{{route('tags.edit', $tag->id)}}" class="btn-edit">Modifier</a>
                         <a href="#" class="btn-delete">Supprimer</a>

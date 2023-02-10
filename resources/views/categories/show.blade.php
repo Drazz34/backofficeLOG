@@ -13,6 +13,8 @@
                     
                     <p class="p-5">Liste de tous les jeux de cette catégorie</p>
 
+                    <p class="p-5">{{$jeux}}</p>
+
                     <div class="flex justify-end">
                         <a href="{{route('categories.edit', $categorie->id)}}" class="btn-edit">Modifier</a>
                         <a href="#" class="btn-delete">Supprimer</a>

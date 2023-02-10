@@ -10,6 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h1 class="font-bold text-2xl">{{$jeu->titre}}</h1>
+
+                    <h3 class="text-xl">{{$categorie->libelle}}</h3>
                     
                     <p class="p-5">{{$jeu->description}}</p>
 

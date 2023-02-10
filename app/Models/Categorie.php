@@ -13,4 +13,9 @@ class Categorie extends Model
     protected $primaryKey = "id";
     protected $fillable = array("libelle");
     public $timestamps = false;
+    
+    public function jeux()
+    {
+        return $this->hasMany(Jeu::class);
+    }
 }

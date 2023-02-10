@@ -14,4 +14,13 @@ class Jeu extends Model
     protected $fillable = array('titre');
     protected $fillableDesc = array('description');
     public $timestamps = false;
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
+    }
 }

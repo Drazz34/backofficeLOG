@@ -10,15 +10,27 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <form action="" method="">
-
+                    <form action="{{route('jeux.update', $jeu->id)}}" method="POST">
+                    @method('PUT')
+                    @csrf
                         <div class="flex flex-col max-w-lg">
                             <label for="titre" class="py-3 font-bold">Titre</label>
                             <input type="text" name="titre" id="titre" value="{{$jeu->titre}}">
+                            @error('titre')
+                            <div class="text-red-500">{{$message}}</div>
+                            @enderror
+                        </div>
+
+                        <div class="flex flex-col max-w-lg">
+                            <label for="description" class="py-3 font-bold">Description</label>
+                            <textarea name="description" id="description">{{$jeu->description}}</textarea>
+                            @error('description')
+                            <div class="text-red-500">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="flex py-5">
-                            <a href="#" class="btn-edit">Sauvegarder</a>
+                            <button type="submit" class="btn-edit">Sauvegarder</button>
                             <a href="#" class="btn-show" onclick="document.getElementById('titre').value='{{$jeu->titre}}';">Annuler</a>
                         </div>
 

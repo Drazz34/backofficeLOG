@@ -26,7 +26,7 @@ class JeuController extends Controller
      */
     public function create()
     {
-        return view('jeux.create', ['message' => "En cours de développement"]);
+        return view('jeux.create');
     }
 
     /**
@@ -37,7 +37,20 @@ class JeuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->validate([
+            'titre' => 'required|string|max:45|min:2',
+            'description' => 'required|string|min:3'
+        ])) {
+            $titre = $request->input('titre');
+            $description = $request->input('description');
+            $jeu = new Jeu();
+            $jeu->titre = $titre;
+            $jeu->description = $description;
+            $jeu->save();
+            return redirect()->route('jeux.index');
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -51,7 +64,8 @@ class JeuController extends Controller
         $jeu = Jeu::find($id);
         return view('jeux.show', [
             'id' => $id,
-            'jeu' => $jeu]);
+            'jeu' => $jeu
+        ]);
     }
 
     /**
@@ -78,7 +92,21 @@ class JeuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->validate([
+            'titre' => 'required|string|max:45|min:2',
+            'description' => 'required|string|min:3'
+        ])) {
+            $titre = $request->input('titre');
+            $description = $request->input('description');
+            $jeu = Jeu::find($id);
+            $jeu->titre = $titre;
+            $jeu->description = $description;
+            $jeu->save();
+            return redirect()->route('jeux.index');
+        } else {
+            return redirect()->back();
+        }
+        die;
     }
 
     /**
@@ -89,6 +117,7 @@ class JeuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Jeu::destroy($id);
+        return redirect()->route('jeux.index');
     }
 }

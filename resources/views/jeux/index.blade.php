@@ -25,7 +25,7 @@
 
                         <tbody>
 
-                            @foreach ($jeux->sortBy('id') as $jeu)
+                            @foreach ($jeux as $jeu)
 
                             <tr class="border text-center">
                                 <td class="p-5">{{$jeu->id}}</td>

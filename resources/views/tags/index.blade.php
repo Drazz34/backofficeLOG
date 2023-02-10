@@ -25,7 +25,7 @@
 
                         <tbody>
 
-                            @foreach ($tags->sortBy('id') as $tag)
+                            @foreach ($tags as $tag)
 
                             <tr class="border text-center">
                                 <td class="p-5">{{$tag->id}}</td>

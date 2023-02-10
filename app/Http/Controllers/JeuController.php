@@ -14,8 +14,8 @@ class JeuController extends Controller
      */
     public function index()
     {
-        $jeux = Jeu::all();
-
+        $jeux = Jeu::orderBy('id', 'asc')->get();
+        
         return view('jeux.index', ['jeux' => $jeux]);
     }
 
@@ -47,7 +47,7 @@ class JeuController extends Controller
             $jeu->titre = $titre;
             $jeu->description = $description;
             $jeu->save();
-            return redirect()->route('jeux.index');
+            return redirect()->route('jeux.show', $jeu->id);
         } else {
             return redirect()->back();
         }
@@ -102,7 +102,7 @@ class JeuController extends Controller
             $jeu->titre = $titre;
             $jeu->description = $description;
             $jeu->save();
-            return redirect()->route('jeux.index');
+            return redirect()->route('jeux.show', $jeu->id);
         } else {
             return redirect()->back();
         }

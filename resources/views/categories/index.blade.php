@@ -25,7 +25,7 @@
 
                         <tbody>
 
-                            @foreach ($categories->sortBy('id') as $categorie)
+                            @foreach ($categories as $categorie)
 
                             <tr class="border text-center">
                                 <td class="p-5">{{$categorie->id}}</td>

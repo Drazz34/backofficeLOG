@@ -31,7 +31,7 @@
 
                         <div class="flex py-5">
                             <button type="submit" class="btn-edit">Sauvegarder</button>
-                            <a href="#" class="btn-show" onclick="document.getElementById('titre').value='{{$jeu->titre}}';">Annuler</a>
+                            <a href="#" class="btn-show" onclick="document.getElementById('titre').value='{{$jeu->titre}}'; document.getElementById('description').value='{{$jeu->description}}';">Annuler</a>
                         </div>
 
                     </form>

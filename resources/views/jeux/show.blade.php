@@ -15,7 +15,7 @@
 
                     <div class="flex justify-end">
                         <a href="{{route('jeux.edit', $jeu->id)}}" class="btn-edit">Modifier</a>
-                        <a href="#" class="btn-delete">Supprimer</a>
+                        <x-btn-supprimer :action="route('jeux.destroy', $jeu->id)"/>
                     </div>
 
                 </div>

@@ -37,7 +37,19 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->validate([
+            'nom' => 'required|string|max:45|min:2'
+        ])) {
+            $nom = $request->input('nom');
+            
+            $tag = new Tag();
+            $tag->nom = $nom;
+            
+            $tag->save();
+            return redirect()->route('tags.show', $tag->id);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -62,9 +74,7 @@ class TagController extends Controller
     public function edit($id)
     {
         $tag = Tag::find($id);
-        return view('tags.edit', [
-            'id' => $id,
-            'tag' => $tag]);
+        return view('tags.edit', compact('tag'));
     }
 
     /**
@@ -76,7 +86,19 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->validate([
+            'nom' => 'required|string|max:45|min:2'            
+        ])) {
+            $nom = $request->input('nom');
+            
+            $tag = Tag::find($id);
+            $tag->nom = $nom;
+            $tag->save();
+            return redirect()->route('tags.show', $tag->id);
+        } else {
+            return redirect()->back();
+        }
+        die;
     }
 
     /**
@@ -87,6 +109,7 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tag::destroy($id);
+        return redirect()->route('tags.index');
     }
 }

@@ -27,7 +27,7 @@
 
                     <div class="flex justify-end">
                         <a href="{{route('categories.edit', $categorie->id)}}" class="btn-edit">Modifier</a>
-                        <a href="#" class="btn-delete">Supprimer</a>
+                        <x-btn-supprimer :action="route('categories.destroy', $categorie->id)"/>
                     </div>
 
                 </div>

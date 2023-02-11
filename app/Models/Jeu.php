@@ -11,7 +11,7 @@ class Jeu extends Model
 
     protected $table = "jeux";
     protected $primaryKey = "id";
-    protected $fillable = array('titre', 'description');
+    protected $fillable = array('titre', 'description', 'categorie_id');
     public $timestamps = false;
 
     public function categorie()

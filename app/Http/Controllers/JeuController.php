@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Jeu;
 use Illuminate\Http\Request;
 
@@ -63,14 +64,8 @@ class JeuController extends Controller
     {
         $jeu = Jeu::find($id);
         $categorie = $jeu->categorie;
-        // $tag = $jeu->tags;
-        // dd($tag);
-        return view('jeux.show', [
-            'jeu' => $jeu,
-            'categorie' => $categorie
-            // 'tag' => $tag
-        ]);
-        
+               
+        return view('jeux.show', compact('jeu', 'categorie'));
     }
 
     /**
@@ -82,9 +77,9 @@ class JeuController extends Controller
     public function edit($id)
     {
         $jeu = Jeu::find($id);
-        return view('jeux.edit', [
-            'jeu' => $jeu
-        ]);
+        $categorie = $jeu->categorie;
+        $categories = Categorie::all();
+        return view('jeux.edit', compact('jeu', 'categorie', 'categories'));
     }
 
     /**
@@ -98,13 +93,17 @@ class JeuController extends Controller
     {
         if ($request->validate([
             'titre' => 'required|string|max:45|min:2',
-            'description' => 'required|string|min:3'
+            'description' => 'string|min:3',
+            'categorie' => 'required'
         ])) {
             $titre = $request->input('titre');
             $description = $request->input('description');
+            $categories = $request->input('categorie');
             $jeu = Jeu::find($id);
             $jeu->titre = $titre;
             $jeu->description = $description;
+            $categorie = Categorie::find($categories);
+            $jeu->categorie()->associate($categorie);  // la méthode associate permet de lier une instance de Categorie à une instance de Jeu
             $jeu->save();
             return redirect()->route('jeux.show', $jeu->id);
         } else {

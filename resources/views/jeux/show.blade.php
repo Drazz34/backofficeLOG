@@ -11,15 +11,25 @@
                 <div class="p-6 text-gray-900">
                     <h1 class="font-bold text-2xl mb-5">{{$jeu->titre}}</h1>
 
-                    <h3 class="text-xl bg-green-300 max-w-min p-2 rounded-lg">{{$categorie->libelle}}</h3>
+                    <div class="flex">
+                        <a href="{{route('categories.show', $categorie->id)}}" class="text-xl m-2 bg-green-300 p-2 rounded-lg">{{$categorie->libelle}}</a>
 
-                    <h3 class="text-xl bg-orange-300 max-w-min p-2 rounded-lg"></h3>
-                    
+                        <h3>
+                            <ul class="flex">
+                                @foreach($jeu->tags as $tag)
+                                <li class="m-2 text-xl bg-orange-200 max-w-min p-2 rounded-lg"><a href="{{route('tags.show', $tag->id)}}">{{$tag->nom}}</a></li>
+                                @endforeach
+                            </ul>
+                        </h3>
+
+                    </div>
+
+
                     <p class="p-5">{{$jeu->description}}</p>
 
                     <div class="flex justify-end">
                         <a href="{{route('jeux.edit', $jeu->id)}}" class="btn-edit">Modifier</a>
-                        <x-btn-supprimer :action="route('jeux.destroy', $jeu->id)"/>
+                        <x-btn-supprimer :action="route('jeux.destroy', $jeu->id)" />
                     </div>
 
                 </div>

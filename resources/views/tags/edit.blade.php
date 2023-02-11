@@ -10,15 +10,20 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <form action="" method="">
+                    <form action="{{route('tags.update', $tag->id)}}" method="POST">
+                        @method('PUT')
+                        @csrf
 
                         <div class="flex flex-col max-w-lg">
                             <label for="nom" class="py-3 font-bold">Nom</label>
                             <input type="text" name="nom" id="nom" value="{{$tag->nom}}">
+                            @error('libelle')
+                            <div class="text-red-500">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="flex py-5">
-                            <a href="#" class="btn-edit">Sauvegarder</a>
+                            <button type="submit" class="btn-edit">Sauvegarder</button>
                             <a href="#" class="btn-show" onclick="document.getElementById('nom').value='{{$tag->nom}}';">Annuler</a>
                         </div>
 

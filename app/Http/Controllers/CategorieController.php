@@ -37,7 +37,19 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->validate([
+            'libelle' => 'required|string|max:45|min:2'
+        ])) {
+            $libelle = $request->input('libelle');
+            
+            $categorie = new Categorie();
+            $categorie->libelle = $libelle;
+            
+            $categorie->save();
+            return redirect()->route('categories.show', $categorie->id);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -53,10 +65,6 @@ class CategorieController extends Controller
         $jeux = $categorie->jeux; // Voir modele categorie fct jeux
         
         return view('categories.show', compact('categorie', 'jeux'));
-        
-        // [
-        //     'id' => $id,
-        //     'categorie' => $categorie]
     }
 
     /**
@@ -68,9 +76,7 @@ class CategorieController extends Controller
     public function edit($id)
     {
         $categorie = Categorie::find($id);
-        return view('categories.edit', [
-            'id' => $id,
-            'categorie' => $categorie]);
+        return view('categories.edit', compact('categorie'));
     }
 
     /**
@@ -82,7 +88,19 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->validate([
+            'libelle' => 'required|string|max:45|min:2'            
+        ])) {
+            $libelle = $request->input('libelle');
+            
+            $categorie = Categorie::find($id);
+            $categorie->libelle = $libelle;
+            $categorie->save();
+            return redirect()->route('categories.show', $categorie->id);
+        } else {
+            return redirect()->back();
+        }
+        die;
     }
 
     /**
@@ -93,6 +111,7 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Categorie::destroy($id);
+        return redirect()->route('categories.index');
     }
 }

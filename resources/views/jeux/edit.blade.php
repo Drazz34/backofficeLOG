@@ -11,8 +11,8 @@
                 <div class="p-6 text-gray-900">
 
                     <form action="{{route('jeux.update', $jeu->id)}}" method="POST">
-                    @method('PUT')
-                    @csrf
+                        @method('PUT')
+                        @csrf
                         <div class="flex flex-col max-w-lg">
                             <label for="titre" class="py-3 font-bold">Titre</label>
                             <input type="text" name="titre" id="titre" value="{{$jeu->titre}}">
@@ -20,6 +20,22 @@
                             <div class="text-red-500">{{$message}}</div>
                             @enderror
                         </div>
+
+
+
+                        <div class="flex flex-col max-w-lg">
+                            <label for="categorie" class="py-3 font-bold">Catégorie</label>
+                            <select name="categorie" id="categorie">
+                                <option value="">Sélectionnez une catégorie</option>
+                                @foreach($categories as $categorie)
+                                <option value="{{$categorie->id}}">{{$categorie->libelle}}</option>
+                                @endforeach
+                            </select>
+                            @error('categorie')
+                            <div class="text-red-500">{{$message}}</div>
+                            @enderror
+                        </div>
+
 
                         <div class="flex flex-col max-w-lg">
                             <label for="description" class="py-3 font-bold">Description</label>

@@ -10,16 +10,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <form action="" method="" class="w-full max-w-lg p-5 bg-white shadow-md">
+                    <form action="{{route('categories.store')}}" method="POST" class="w-full max-w-lg p-5 bg-white shadow-md">
                         @csrf
                         <div class="form-group">
                             <label for="libelle" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Libellé</label>
-                            <input type="text" name="libelle" id="libelle" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" required >
+                            <input type="text" name="libelle" id="libelle" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" required>
+                            @error('libelle')
+                            <div class="text-red-500">{{$message}}</div>
+                            @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="description" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Description</label>
-                            <textarea name="description" id="description" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required></textarea>
-                        </div>
+
+
                         <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">CREER</button>
                     </form>
 

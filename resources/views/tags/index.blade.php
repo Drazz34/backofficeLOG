@@ -61,17 +61,7 @@
 
 
                                     <!-- lien Supprimer -->
-                                    @component('components.btn-modele')
-                                    @slot('route')
-                                    #
-                                    @endslot
-                                    @slot('class')
-                                    text-white bg-red-600 hover:bg-red-800 focus:bg-red-800;
-                                    @endslot
-                                    @slot('title')
-                                    Supprimer
-                                    @endslot
-                                    @endcomponent
+                                    <x-btn-supprimer :action="route('tags.destroy', $tag->id)"/>
 
                                 </td>
 

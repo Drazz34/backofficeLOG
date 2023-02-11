@@ -23,6 +23,8 @@ Route::resource('categories', CategorieController::class);
 
 Route::resource('tags', TagController::class);
 
+Route::post('jeux/{id}/attach', [JeuController::class, 'attach'])->name('jeux.attach');
+
 Route::get('/', function () {
     return view('welcome');
 });

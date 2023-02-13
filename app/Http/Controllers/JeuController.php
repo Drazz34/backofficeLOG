@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use App\Models\Jeu;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class JeuController extends Controller
@@ -16,7 +17,7 @@ class JeuController extends Controller
     public function index()
     {
         $jeux = Jeu::orderBy('id', 'asc')->get();
-        
+
         return view('jeux.index', ['jeux' => $jeux]);
     }
 
@@ -64,7 +65,7 @@ class JeuController extends Controller
     {
         $jeu = Jeu::find($id);
         $categorie = $jeu->categorie;
-               
+
         return view('jeux.show', compact('jeu', 'categorie'));
     }
 
@@ -122,5 +123,26 @@ class JeuController extends Controller
     {
         Jeu::destroy($id);
         return redirect()->route('jeux.index');
+    }
+
+    public function attach(Request $request, $id_jeu)
+    {
+        if ($request->validate([
+            'tag' => 'required|string|max:45|min:2'
+        ])) {
+            $nom_tag = $request->input('tag');
+            $tag = Tag::firstOrCreate([        //firstOfCreate() crée une nouveau tag sauf s'il existe déjà
+                'nom' => $nom_tag
+            ]);
+            
+            $jeu = Jeu::find($id_jeu);
+            $jeu->tags()->attach($tag->id);     // la méthode attach sert à lier le tag trouvé (ou créé) au jeu enregistré en utilisant la relation tags définie dans la classe Jeu.
+            // $tags = $jeu->tags;
+            // $bool = $tags->contains(1);
+            return redirect()->route('jeux.show', $jeu->id);
+        } else {
+            return redirect()->back();
+        }
+        die;
     }
 }

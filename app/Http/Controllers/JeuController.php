@@ -136,13 +136,23 @@ class JeuController extends Controller
             ]);
             
             $jeu = Jeu::find($id_jeu);
-            $jeu->tags()->attach($tag->id);     // la méthode attach sert à lier le tag trouvé (ou créé) au jeu enregistré en utilisant la relation tags définie dans la classe Jeu.
-            // $tags = $jeu->tags;
-            // $bool = $tags->contains(1);
+            $tags = $jeu->tags;
+            $bool = $tags->contains($tag->id);  // Vérifie si le tag existe déjà
+
+            if(!$bool) {
+                $jeu->tags()->attach($tag->id);     // la méthode attach sert à lier le tag trouvé (ou créé) au jeu enregistré en utilisant la relation tags définie dans la classe Jeu.
+            }
+
             return redirect()->route('jeux.show', $jeu->id);
         } else {
             return redirect()->back();
         }
         die;
+    }
+
+    public function detach($id_jeu, $id_tag) {
+        $jeu = Jeu::find($id_jeu);
+        $jeu->tags()->detach($id_tag);
+        return redirect()->back();
     }
 }

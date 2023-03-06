@@ -25,7 +25,7 @@ Route::resource('tags', TagController::class);
 
 Route::post('jeux/{id}/attach', [JeuController::class, 'attach'])->name('jeux.attach');
 
-Route::get('jeux/{id_jeu}/detach/{id_tag}', [  // methode detach se trouve dans le controleur JeuCOntroller
+Route::get('jeux/{id_jeu}/detach/{id_tag}', [  // methode detach se trouve dans le controleur JeuController
     JeuController::class, 'detach'
 ])->name('jeux.detach');
 
